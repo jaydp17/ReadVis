@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
 	private CameraBridgeViewBase mOpenCvCameraView;
 	private Mat mRgba, mGray;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.i(TAG, "called onCreate");
@@ -42,6 +43,8 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
                 case LoaderCallbackInterface.SUCCESS:
                 {
                     Log.i(TAG, "OpenCV loaded successfully");
+                    // Load native library after(!) OpenCV initialization
+                    System.loadLibrary("readvis");
                     mOpenCvCameraView.enableView();
                 } break;
                 default:
